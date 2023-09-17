@@ -12,6 +12,10 @@ module.exports = {
     // TypeScript
     '@typescript-eslint/comma-dangle': 'off',
     '@typescript-eslint/lines-between-class-members': 'off',
+    '@typescript-eslint/indent': ['error', 2, {
+      SwitchCase: 1,
+      ignoredNodes: ['TSTypeParameterInstantiation']
+    }],
     // General
     'operator-linebreak': ['error', 'after'],
     'implicit-arrow-linebreak': 'off',

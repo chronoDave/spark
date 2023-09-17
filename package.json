@@ -26,14 +26,17 @@
   },
   "scripts": {
     "lint": "eslint src",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "node scripts/tape.js && tape build/**/*.spec.js"
   },
   "devDependencies": {
+    "@types/tape": "^5.6.1",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "esbuild": "^0.19.3",
     "eslint": "^8.49.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
+    "fast-glob": "^3.3.1",
     "rollup": "^3.29.2",
     "rollup-plugin-dts": "^6.0.2",
     "rollup-plugin-esbuild": "^5.0.0",

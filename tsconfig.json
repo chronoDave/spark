@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     
     "strict": true,
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
+
+    "allowSyntheticDefaultImports": true,
 
     "declaration": true,
     "outDir": "./test/build"
@@ -13,6 +15,7 @@
   "include": [
     "src",
     "test",
+    "scripts",
     ".eslintrc.js",
     "rollup.config.js"
   ]
