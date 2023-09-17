@@ -12,7 +12,10 @@ build({
     absolute: true
   }),
   bundle: true,
-  external: ['tape'],
+  external: [
+    'tape',
+    'jsdom'
+  ],
   platform: 'node',
   outdir,
   plugins: [{

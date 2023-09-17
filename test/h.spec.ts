@@ -1,6 +1,6 @@
 import test from 'tape';
 
-import h from '../../src/h';
+import h from '../src/h';
 
 test('[h] creates vnode', t => {
   const vnode = h('div');
