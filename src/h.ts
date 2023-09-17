@@ -1,27 +1,30 @@
-import { Tag, VNode } from './types';
+import { Properties, Tag, VNode } from './types';
+
+const createSelector = (tag: Tag, properties?: Partial<Properties>) => {
+  if (properties?.id) return `#${properties.id}`;
+  if (properties?.classes) return `${tag}.${properties.classes?.join('.')}`;
+  return tag;
+};
 
 const h = <T extends Tag>(
   tag: T,
-  options?: {
-    properties?: Partial<HTMLElementTagNameMap[T]>,
-    text?: string
-  },
+  properties?: Partial<Properties>,
   children?: VNode[]
-): VNode<T> => ({
-  tag,
-  selector: tag,
-  text: options?.text,
-  properties: options?.properties,
-  children: (children ?? [])
-    .map(child => {
-      const vnode = h(child.tag, {
-        properties: child.properties,
-        text: child.text
-      }, child.children);
-      vnode.selector = `${tag}>${vnode.selector}`;
+): VNode<T> => {
+  const selector = createSelector(tag, properties);
 
-      return vnode;
-    })
-});
+  return ({
+    tag,
+    selector,
+    properties,
+    children: (children ?? [])
+      .map(child => {
+        const vnode = h(child.tag, child.properties, child.children);
+        vnode.selector = `${selector}>${vnode.selector}`;
+
+        return vnode;
+      })
+  });
+};
 
 export default h;

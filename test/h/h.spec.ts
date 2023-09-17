@@ -22,3 +22,23 @@ test('[h] creates children', t => {
 
   t.end();
 });
+
+test('[h] creates smart selector', t => {
+  t.equal(
+    h('div', { id: 'test', classes: ['smart'] }).selector,
+    '#test',
+    'creates id selector'
+  );
+  t.equal(
+    h('div', { classes: ['smart'] }).selector,
+    'div.smart',
+    'creates class selector'
+  );
+  t.equal(
+    h('div', { id: 'smart' }, [h('p', { classes: ['test'] })]).children[0].selector,
+    '#smart>p.test',
+    'creates child selector'
+  );
+
+  t.end();
+});
