@@ -1,5 +1,7 @@
 export * as JSX from './jsx';
 
+export type Element<T extends object = {}> = (props: T & { children?: any[] }) => any;
+
 const VOID_ELEMENTS = new Set([
   'area',
   'base',
@@ -27,13 +29,18 @@ const renderProps = (props?: Record<string, unknown>) => {
   return ` ${x}`;
 };
 
-const renderChild = (child: unknown): any => {
+const renderChild = (child: unknown): unknown => {
   if (Array.isArray(child)) return child.map(renderChild).join('');
   if (typeof child === 'function') return child();
   return child ?? '';
 };
 
-export const createElement = (tag: string, props?: Record<string, unknown>, ...children: unknown[]) => {
+export const createElement = (
+  tag: string | ((props: Record<string, unknown> & { children?: unknown[] }) => string),
+  props?: Record<string, unknown>,
+  ...children: unknown[]
+) => {
+  if (typeof tag === 'function') return tag({ ...props, children });
   if (VOID_ELEMENTS.has(tag)) return `<${tag}${renderProps(props)}>`;
   return `<${tag}${renderProps(props)}>${children.map(renderChild).join('')}</${tag}>`;
 };

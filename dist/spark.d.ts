@@ -1,4 +1,4 @@
-type Attribute = string | boolean | number | (() => Attribute) | Attribute[];
+type Attribute = string | boolean | number | null | (() => Attribute) | Attribute[];
 type TargetAttribute = '_blank' | '_self' | '_parent' | '_top' | string;
 type MethodAttribute = 'get' | 'post' | 'dialog';
 type RelAttribute = 'noreferrer' | 'noopener' | 'opener';
@@ -431,13 +431,20 @@ type HTMLElements = {
     wbr: Partial<HTMLAttributes>;
 };
 
+type ElementChildrenAttribute = {
+    children?: any;
+};
 type IntrinsicElements = HTMLElements & HTMLCustomElements;
 
+type jsx_ElementChildrenAttribute = ElementChildrenAttribute;
 type jsx_IntrinsicElements = IntrinsicElements;
 declare namespace jsx {
-  export type { jsx_IntrinsicElements as IntrinsicElements };
+  export type { jsx_ElementChildrenAttribute as ElementChildrenAttribute, jsx_IntrinsicElements as IntrinsicElements };
 }
 
+type Element<T extends object = {}> = (props: T & {
+    children: any[];
+}) => any;
 declare const createElement: (tag: string, props?: Record<string, unknown>, ...children: unknown[]) => string;
 
-export { jsx as JSX, createElement };
+export { type Element, jsx as JSX, createElement };

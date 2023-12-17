@@ -1,4 +1,4 @@
-export type Attribute = string | boolean | number | (() => Attribute) | Attribute[];
+export type Attribute = string | boolean | number | null | (() => Attribute) | Attribute[];
 
 export type TargetAttribute = '_blank' | '_self' | '_parent' | '_top' | string;
 export type MethodAttribute = 'get' | 'post' | 'dialog';
