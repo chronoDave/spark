@@ -1,6 +1,4 @@
 <div align="center">
-  <span style="font-size: 3rem" aria-hidden="true">🌊</span>
-
   <h1>jsx-flow</h1>
   <p><b>jsx-flow</b> is a simple <a href="https://en.wikipedia.org/wiki/JSX_(JavaScript)">JSX</a> templating language.</p>
 </div>
