@@ -7,7 +7,7 @@ const glob = require('fast-glob');
 const outdir = path.resolve(__dirname, '../build');
 
 build({
-  entryPoints: glob.sync('../test/**/*.spec.ts', {
+  entryPoints: glob.sync('../src/**/*.spec.ts*', {
     cwd: __dirname,
     absolute: true
   }),

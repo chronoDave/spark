@@ -1,10 +1,10 @@
-import esbuild from 'rollup-plugin-esbuild';
-import dts from 'rollup-plugin-dts';
+const esbuild = require('rollup-plugin-esbuild').default;
+const dts = require('rollup-plugin-dts').default;
 
-const input = 'src/index.ts';
+const input = 'src/spark.ts';
 const output = type => `dist/spark.${type}`;
 
-export default [{
+module.exports = [{
   input,
   plugins: [
     esbuild({
