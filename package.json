@@ -1,5 +1,5 @@
 {
-  "name": "spark",
+  "name": "jsx-flow",
   "version": "0.0.1",
   "description": "Simple JSX templating",
   "main": "dist/spark.cjs",
