@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>jsx-flow</h1>
-  <p><b>jsx-flow</b> is a simple <a href="https://en.wikipedia.org/wiki/JSX_(JavaScript)">JSX</a> templating language.</p>
+  <h1>@chronocide/spark</h1>
+  <p><b>@chronocide/spark</b> is a simple <a href="https://en.wikipedia.org/wiki/JSX_(JavaScript)">JSX</a> templating language.</p>
 </div>
 
 <div align="center">
@@ -20,12 +20,12 @@
 ### Installation
 
 ```sh
-npm i jsx-flow
+npm i @chronocide/spark
 ```
 
 ### Example
 
-Using **jsx-flow** should feel familiar for those used to writing JSX:
+Using **@chronocide/spark** should feel familiar for those used to writing JSX:
 
 **tsconfig.json**
 
