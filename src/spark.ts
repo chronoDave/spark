@@ -1,6 +1,6 @@
 export * as JSX from './jsx';
 
-export type Element<T extends object = {}> = (props: T & { children?: any[] }) => any;
+export type Element<T extends object = {}> = (props: T & { children?: any | any[] }) => any;
 
 const VOID_ELEMENTS = new Set([
   'area',
