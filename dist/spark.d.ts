@@ -443,8 +443,10 @@ declare namespace jsx {
 }
 
 type Element<T extends object = {}> = (props: T & {
-    children: any[];
+    children?: any | any[];
 }) => any;
-declare const createElement: (tag: string, props?: Record<string, unknown>, ...children: unknown[]) => string;
+declare const createElement: (tag: string | ((props: Record<string, unknown> & {
+    children?: unknown[] | undefined;
+}) => string), props?: Record<string, unknown>, ...children: unknown[]) => string;
 
-export { type Element, jsx as JSX, createElement };
+export { type Element, jsx as JSX, createElement, createElement as default };

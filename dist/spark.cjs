@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var jsx = /*#__PURE__*/Object.freeze({
   __proto__: null
 });
@@ -35,6 +37,8 @@ const renderChild = (child) => {
   return child ?? "";
 };
 const createElement = (tag, props, ...children) => {
+  if (typeof tag === "function")
+    return tag({ ...props, children });
   if (VOID_ELEMENTS.has(tag))
     return `<${tag}${renderProps(props)}>`;
   return `<${tag}${renderProps(props)}>${children.map(renderChild).join("")}</${tag}>`;
@@ -42,3 +46,4 @@ const createElement = (tag, props, ...children) => {
 
 exports.JSX = jsx;
 exports.createElement = createElement;
+exports.default = createElement;

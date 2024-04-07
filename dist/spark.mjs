@@ -33,9 +33,11 @@ const renderChild = (child) => {
   return child ?? "";
 };
 const createElement = (tag, props, ...children) => {
+  if (typeof tag === "function")
+    return tag({ ...props, children });
   if (VOID_ELEMENTS.has(tag))
     return `<${tag}${renderProps(props)}>`;
   return `<${tag}${renderProps(props)}>${children.map(renderChild).join("")}</${tag}>`;
 };
 
-export { jsx as JSX, createElement };
+export { jsx as JSX, createElement, createElement as default };

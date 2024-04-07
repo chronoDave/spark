@@ -1,4 +1,4 @@
-import { HTMLCustomElements, HTMLElements } from './types/elements';
+import type { HTMLCustomElements, HTMLElements } from './types/elements';
 
 export type ElementChildrenAttribute = {
   children?: any
