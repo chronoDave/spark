@@ -44,3 +44,5 @@ export const createElement = (
   if (VOID_ELEMENTS.has(tag)) return `<${tag}${renderProps(props)}>`;
   return `<${tag}${renderProps(props)}>${children.map(renderChild).join('')}</${tag}>`;
 };
+
+export default createElement;
