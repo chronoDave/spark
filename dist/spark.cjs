@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var jsx = /*#__PURE__*/Object.freeze({
   __proto__: null
 });
@@ -46,4 +44,3 @@ const createElement = (tag, props, ...children) => {
 
 exports.JSX = jsx;
 exports.createElement = createElement;
-exports.default = createElement;

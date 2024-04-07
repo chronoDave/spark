@@ -447,6 +447,6 @@ type Element<T extends object = {}> = (props: T & {
 }) => any;
 declare const createElement: (tag: string | ((props: Record<string, unknown> & {
     children?: unknown[] | undefined;
-}) => string), props?: Record<string, unknown>, ...children: unknown[]) => string;
+}) => string), props?: Record<string, unknown>, ...children: any[]) => string;
 
-export { type Element, jsx as JSX, createElement, createElement as default };
+export { type Element, jsx as JSX, createElement };

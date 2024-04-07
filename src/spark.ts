@@ -38,11 +38,9 @@ const renderChild = (child: unknown): unknown => {
 export const createElement = (
   tag: string | ((props: Record<string, unknown> & { children?: unknown[] }) => string),
   props?: Record<string, unknown>,
-  ...children: unknown[]
+  ...children: any[]
 ) => {
   if (typeof tag === 'function') return tag({ ...props, children });
   if (VOID_ELEMENTS.has(tag)) return `<${tag}${renderProps(props)}>`;
   return `<${tag}${renderProps(props)}>${children.map(renderChild).join('')}</${tag}>`;
 };
-
-export default createElement;

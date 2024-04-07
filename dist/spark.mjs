@@ -40,4 +40,4 @@ const createElement = (tag, props, ...children) => {
   return `<${tag}${renderProps(props)}>${children.map(renderChild).join("")}</${tag}>`;
 };
 
-export { jsx as JSX, createElement, createElement as default };
+export { jsx as JSX, createElement };
