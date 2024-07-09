@@ -2,12 +2,11 @@
   "compilerOptions": {
     "target": "ES6",
     "lib": ["ESNext", "DOM"],
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
 
     "jsx": "react",
     "jsxFactory": "spark.createElement",
-    "jsxFragmentFactory": "spark.createFragment",
     
     "strict": true,
     "noImplicitAny": true,

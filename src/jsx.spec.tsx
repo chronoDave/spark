@@ -38,7 +38,7 @@ test('[jsx] renders children', t => {
 });
 
 test('[jsx] renders components', t => {
-  const Template: spark.Element = props => <div>{props.children}</div>;
+  const Template: spark.Component = props => <div>{props.children}</div>;
 
   t.equal(<Template><p></p></Template>, '<div><p></p></div>', 'renders component');
 
@@ -46,7 +46,7 @@ test('[jsx] renders components', t => {
 });
 
 test('[jsx] renders component props', t => {
-  const Heading: spark.Element<{ title: string }> = props => <h1>{props.title}</h1>;
+  const Heading: spark.Component<{ title: string }> = props => <h1>{props.title}</h1>;
 
   t.equal(<Heading title="title" />, '<h1>title</h1>', 'renders component props');
 

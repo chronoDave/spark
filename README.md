@@ -1,6 +1,6 @@
 <div align="center">
   <h1>@chronocide/spark</h1>
-  <p><b>@chronocide/spark</b> is a simple <a href="https://en.wikipedia.org/wiki/JSX_(JavaScript)">JSX</a> templating language.</p>
+  <p><b>@chronocide/spark</b> is a simple <a href="https://en.wikipedia.org/wiki/JSX_(JavaScript)">JSX</a> to HTML renderer.</p>
 </div>
 
 <div align="center">
@@ -33,8 +33,7 @@ Using **@chronocide/spark** should feel familiar for those used to writing JSX:
 {
   ...
   "jsx": "react",
-  "jsxFactory": "spark.createElement",
-  "jsxFragmentFactory": "spark.Fragment"
+  "jsxFactory": "spark.createElement"
   ...
 }
 ```
@@ -42,15 +41,50 @@ Using **@chronocide/spark** should feel familiar for those used to writing JSX:
 **index.tsx**
 
 ```TSX
-const Template = props => (
+import * as spark from '@chronocide/spark';
+
+type TemplateProps = {
+  title: string
+}
+
+const Template: spark.Component<TemplateProps> = props => (
   <html lang="en">
-    <body>{props.children}</body>
+    <body>
+      <h1>{props.title}</h1>
+      {props.children}
+    </body>
   </html>
 );
 
 const Page = () => (
-  <Template>
-    <h1>Title</h1>
+  <Template title="Page">
+    <p>Title</p>
   </Template>
-)
+);
+
+<Page /> // <html lang="en"><body><h1>Page</h1><p>Title</p></body></html>
+```
+
+Or if you prefer hyperscript:
+
+**index.ts**
+
+```ts
+import { createElement as h } from '@chronocide/spark';
+
+type TemplateProps = {
+  title: string
+}
+
+const template = (props: TemplateProps, children: string[]) =>
+  h('html', { lang: 'en' },
+    h('body', {},
+      h('h1', {}, props.title),
+      ...children
+    )
+  );
+
+const page = () => template({ title: 'Page' }, h('p', {}, 'Title') });
+
+page(); // <html lang="en"><body><h1>Page</h1><p>Title</p></body></html>
 ```
