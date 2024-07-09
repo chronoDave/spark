@@ -1,7 +1,29 @@
 'use strict';
 
-var jsx = /*#__PURE__*/Object.freeze({
-  __proto__: null
+const createTextElement = (x) => ({
+  type: "text",
+  props: {},
+  value: `${x}`,
+  children: []
+});
+const createChild = (child) => {
+  if (typeof child === "undefined" || child === null)
+    return null;
+  if (typeof child === "function")
+    return createChild(child());
+  if (typeof child === "object")
+    return child;
+  return createTextElement(child);
+};
+var element = (tag, props, children) => ({
+  type: tag,
+  props: props ?? {},
+  children: children?.reduce((acc, cur) => {
+    const child = createChild(cur);
+    if (child)
+      acc.push(child);
+    return acc;
+  }, []) ?? []
 });
 
 const VOID_ELEMENTS = /* @__PURE__ */ new Set([
@@ -20,27 +42,33 @@ const VOID_ELEMENTS = /* @__PURE__ */ new Set([
   "wbr"
 ]);
 const renderProps = (props) => {
-  if (!props || Object.keys(props).length === 0)
-    return "";
-  const x = Object.entries(props).map(([k, v]) => v || v === false ? `${k}="${typeof v === "function" ? v() : v}"` : "").join(" ");
+  const x = Object.entries(props).reduce((acc, [k, v]) => {
+    if (typeof v === "function") {
+      acc.push(`${k}="${v()}"`);
+      return acc;
+    }
+    if (typeof v !== "undefined" && v !== null)
+      acc.push(`${k}="${v}"`);
+    return acc;
+  }, []);
   if (x.length === 0)
     return "";
-  return ` ${x}`;
+  return ` ${x.join("")}`;
 };
-const renderChild = (child) => {
-  if (Array.isArray(child))
-    return child.map(renderChild).join("");
-  if (typeof child === "function")
-    return child();
-  return child ?? "";
-};
-const createElement = (tag, props, ...children) => {
-  if (typeof tag === "function")
-    return tag({ ...props, children });
-  if (VOID_ELEMENTS.has(tag))
-    return `<${tag}${renderProps(props)}>`;
-  return `<${tag}${renderProps(props)}>${children.map(renderChild).join("")}</${tag}>`;
+const render = (element) => {
+  if (typeof element === "string")
+    return element;
+  if ("value" in element)
+    return element.value;
+  if (VOID_ELEMENTS.has(element.type))
+    return `<${element.type}${renderProps(element.props)}>`;
+  return `<${element.type}${renderProps(element.props)}>${element.children.map(render).join("")}</${element.type}>`;
 };
 
-exports.JSX = jsx;
+const createElement = (tag, props, ...children) => {
+  if (typeof tag === "function")
+    return tag({ ...props, children: children.flat() });
+  return render(element(tag, props, children.flat()));
+};
+
 exports.createElement = createElement;
