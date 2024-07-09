@@ -1,6 +1,6 @@
 {
   "name": "@chronocide/spark",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Simple JSX templating",
   "main": "dist/spark.cjs",
   "module": "dist/spark.mjs",
