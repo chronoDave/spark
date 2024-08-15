@@ -1,6 +1,6 @@
 <div align="center">
   <h1>@chronocide/spark</h1>
-  <p><b>@chronocide/spark</b> is a simple <a href="https://en.wikipedia.org/wiki/JSX_(JavaScript)">JSX</a> to HTML renderer.</p>
+  <p>Simple <b>JSX</b> templating library.</p>
 </div>
 
 <div align="center">
@@ -15,6 +15,10 @@
   </a>
 </div>
 
+## Why?
+
+`@chronocide/spark` is tiny and fullfills exactly one job, which is templating in JavaScript. Similar templating solutions exist such as [Handlebars](https://handlebarsjs.com/), [EJS](https://ejs.co/) or [Nunjucks](https://github.com/mozilla/nunjucks) but these solutions provide more than just templating (and don't use JavaScript directly).
+
 ## Getting Started
 
 ### Installation
@@ -24,8 +28,6 @@ npm i @chronocide/spark
 ```
 
 ### Example
-
-Using **@chronocide/spark** should feel familiar for those used to writing JSX:
 
 **tsconfig.json**
 
@@ -43,11 +45,11 @@ Using **@chronocide/spark** should feel familiar for those used to writing JSX:
 ```TSX
 import * as spark from '@chronocide/spark';
 
-type TemplateProps = {
+type Props = {
   title: string
 }
 
-const Template: spark.Component<TemplateProps> = props => (
+const Template: spark.Component<Props> = props => (
   <html lang="en">
     <body>
       <h1>{props.title}</h1>
@@ -64,8 +66,6 @@ const Page = () => (
 
 <Page /> // <html lang="en"><body><h1>Page</h1><p>Title</p></body></html>
 ```
-
-Or if you prefer hyperscript:
 
 **index.ts**
 
