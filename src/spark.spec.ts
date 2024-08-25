@@ -33,6 +33,14 @@ test('[spark] renders children', t => {
     'read ',
     createElement('a', {}, 'link')
   ]), '<p>read <a>link</a></p>', 'renders nested children');
+  t.equal(
+    createElement('dl', {}, [{}].map(() => [
+      createElement('dt', {}),
+      [createElement('dd', {})]
+    ])),
+    '<dl><dt></dt><dd></dd></dl>',
+    'renders recursive children'
+  );
 
   t.end();
 });

@@ -11,7 +11,10 @@
       "require": "./dist/spark.cjs"
     }
   },
-  "keywords": [],
+  "keywords": [
+    "jsx",
+    "template"
+  ],
   "files": [
     "dist/**/*"
   ],

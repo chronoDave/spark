@@ -442,4 +442,8 @@ export namespace JSX {
     wbr: Partial<HTMLAttributes>;
     [element: string]: Partial<HTMLAttributes>;
   }
+
+  export interface ElementChildrenAttribute {
+    children: Child;
+  }
 }

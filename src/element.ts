@@ -1,4 +1,4 @@
-export type Child = string | number | boolean | null | (() => Child);
+export type Child = string | number | boolean | null | (() => Child) | Child[];
 
 export type Element = {
   type: string;
@@ -11,6 +11,8 @@ export type TextElement = Element & {
   value: string;
 };
 
+export type ChildElement = null | Element | TextElement | ChildElement[];
+
 const createTextElement = (x: string | boolean | number | null): TextElement => ({
   type: 'text',
   props: {},
@@ -18,9 +20,11 @@ const createTextElement = (x: string | boolean | number | null): TextElement => 
   children: []
 });
 
-const createChild = (child: Child): Element | TextElement | null => {
+const createChildElement = (child: Child): ChildElement => {
+  if (Array.isArray(child)) return child.map(createChildElement);
+
   if (typeof child === 'undefined' || child === null) return null;
-  if (typeof child === 'function') return createChild(child());
+  if (typeof child === 'function') return createChildElement(child());
   if (typeof child === 'object') return child;
   return createTextElement(child);
 };
@@ -29,9 +33,15 @@ export default (tag: string, props: object | null, children?: Child[]): Element 
   type: tag,
   props: props ?? {},
   children: children?.reduce<Array<Element | TextElement>>((acc, cur) => {
-    const child = createChild(cur);
-    if (child) acc.push(child);
+    const child = createChildElement(cur);
 
+    if (Array.isArray(child)) {
+      // @ts-ignore: TS2589: Type instantiation is excessively deep and possibly infinite.
+      acc.push(...(child.flat(Infinity).filter(x => x) as Array<Element | TextElement>));
+    } else if (child) {
+      acc.push(child);
+    }
+    
     return acc;
   }, []) ?? []
 });
