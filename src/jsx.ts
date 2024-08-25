@@ -6,7 +6,7 @@ export type TargetAttribute = '_blank' | '_self' | '_parent' | '_top' | string;
 export type MethodAttribute = 'get' | 'post' | 'dialog';
 
 export type RelAttributeCommon = 'help' | 'license' | 'next' | 'prev' | 'search';
-export type RelAttributeLink = RelAttributeCommon | 'alternate' | 'author' | 'canonical' | 'dns-prefetch' | 'expect' | 'icon' | 'manifest' | 'me' | 'modulepreload' | 'nofollow' | 'noopener' | 'noreferrer' | 'opener' | 'pingback' | 'preconnect' | 'prefetch' | 'preload' | 'prerender' | 'privacy-policy' | 'stylesheet' | 'terms-of-service';
+export type RelAttributeLink = RelAttributeCommon | 'alternate' | 'author' | 'canonical' | 'dns-prefetch' | 'expect' | 'icon' | 'manifest' | 'me' | 'modulepreload' | 'nofollow' | 'noopener' | 'noreferrer' | 'opener' | 'pingback' | 'preconnect' | 'prefetch' | 'preload' | 'prerender' | 'privacy-policy' | 'stylesheet' | 'terms-of-service' | 'apple-touch-icon';
 export type RelAttributeA = RelAttributeCommon | 'alternate' | 'author' | 'bookmark' | 'external' | 'me' | 'privacy-policy' | 'tag' | 'terms-of-service';
 export type RelAttributeArea = RelAttributeCommon | 'alternate' | 'author' | 'bookmark' | 'external' | 'me' | 'privacy-policy' | 'tag' | 'terms-of-service';
 export type RelAttributeForm = RelAttributeCommon | 'external';
