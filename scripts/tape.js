@@ -1,27 +1,17 @@
-const fs = require('fs');
-const path = require('path');
+import fsp from 'fs/promises';
+import path from 'path';
+import esbuild from 'esbuild';
 
-const { build } = require('esbuild');
-const glob = require('fast-glob');
+const outdir = path.resolve(process.cwd(), 'build');
 
-const outdir = path.resolve(__dirname, '../build');
+await fsp.rm(outdir, { force: true, recursive: true });
 
-build({
-  entryPoints: glob.sync('../src/**/*.spec.ts*', {
-    cwd: __dirname,
-    absolute: true
-  }),
+esbuild.build({
+  entryPoints: ['src/**/*.spec.ts', 'src/**/*.spec.tsx'],
   bundle: true,
-  external: [
-    'tape',
-    'jsdom'
-  ],
+  external: ['tape', 'json'],
   platform: 'node',
-  outdir,
-  plugins: [{
-    name: 'clean',
-    setup: () => {
-      fs.rmSync(outdir, { force: true, recursive: true });
-    }
-  }]
+  format: 'esm',
+  outdir
 });
+

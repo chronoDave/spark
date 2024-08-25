@@ -1,14 +1,14 @@
 export type Child = string | number | boolean | null | (() => Child);
 
 export type Element = {
-  type: string
-  props: object
-  children: Array<Element | TextElement>
+  type: string;
+  props: object;
+  children: Array<Element | TextElement>;
 };
 
 export type TextElement = Element & {
-  type: 'text'
-  value: string
+  type: 'text';
+  value: string;
 };
 
 const createTextElement = (x: string | boolean | number | null): TextElement => ({
