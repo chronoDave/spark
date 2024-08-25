@@ -4,7 +4,13 @@ export type Attribute = string | boolean | number | null | (() => Attribute) | A
 
 export type TargetAttribute = '_blank' | '_self' | '_parent' | '_top' | string;
 export type MethodAttribute = 'get' | 'post' | 'dialog';
-export type RelAttribute = 'noreferrer' | 'noopener' | 'opener';
+
+export type RelAttributeCommon = 'help' | 'license' | 'next' | 'prev' | 'search';
+export type RelAttributeLink = RelAttributeCommon | 'alternate' | 'author' | 'canonical' | 'dns-prefetch' | 'expect' | 'icon' | 'manifest' | 'me' | 'modulepreload' | 'nofollow' | 'noopener' | 'noreferrer' | 'opener' | 'pingback' | 'preconnect' | 'prefetch' | 'preload' | 'prerender' | 'privacy-policy' | 'stylesheet' | 'terms-of-service';
+export type RelAttributeA = RelAttributeCommon | 'alternate' | 'author' | 'bookmark' | 'external' | 'me' | 'privacy-policy' | 'tag' | 'terms-of-service';
+export type RelAttributeArea = RelAttributeCommon | 'alternate' | 'author' | 'bookmark' | 'external' | 'me' | 'privacy-policy' | 'tag' | 'terms-of-service';
+export type RelAttributeForm = RelAttributeCommon | 'external';
+
 export type LoadingAttribute = 'lazy' | 'eager';
 
 export type GlobalAttributes = {
@@ -51,7 +57,7 @@ export namespace JSX {
       target: TargetAttribute
       download: string
       ping: string
-      rel: string
+      rel: RelAttributeA
       hreflang: string
       type: string
       referrerpolicy: string
@@ -60,7 +66,7 @@ export namespace JSX {
     address: Partial<HTMLAttributes>
     area: Partial<HTMLAttributes & {
       target: TargetAttribute
-      rel: RelAttribute
+      rel: RelAttributeArea
       media: string
       hreflang: string
       type: string
@@ -165,7 +171,7 @@ export namespace JSX {
       name: string
       novalidate: boolean
       target: TargetAttribute
-      rel: RelAttribute
+      rel: RelAttributeForm
     }>
     h1: Partial<HTMLAttributes>
     h2: Partial<HTMLAttributes>
@@ -257,7 +263,7 @@ export namespace JSX {
     link: Partial<HTMLAttributes & {
       href: string
       crossorigin: string
-      rel: RelAttribute
+      rel: RelAttributeLink
       as: string
       media: string
       integrity: string
