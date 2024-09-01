@@ -30,7 +30,8 @@ const renderProps = (props: object): string => {
     }, []);
 
   if (x.length === 0) return '';
-  return ` ${x.join('')}`;
+
+  return ` ${x.join(' ')}`;
 };
 
 export const render = (element: Element | TextElement | string): string => {
