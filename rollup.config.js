@@ -21,7 +21,7 @@ export default [{
   output: [{
     file: output('cjs'),
     exports: 'auto',
-    format: 'cjs',
+    format: 'cjs'
   }, {
     file: output('js'),
     exports: 'auto',

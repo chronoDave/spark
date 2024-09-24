@@ -17,7 +17,7 @@
 
 ## Why?
 
-`@chronocide/spark` is tiny and fullfills exactly one job, which is templating in JavaScript. Similar templating solutions exist such as [Handlebars](https://handlebarsjs.com/), [EJS](https://ejs.co/) or [Nunjucks](https://github.com/mozilla/nunjucks) but these solutions provide more than just templating (and don't use JavaScript directly).
+`@chronocide/spark` is tiny and fullfills exactly one job, which is templating in JavaScript. Similar templating solutions exist such as [Handlebars](https://handlebarsjs.com/), [EJS](https://ejs.co/) or [Nunjucks](https://github.com/mozilla/nunjucks) but these solutions often provide a custom templating language instead of using JavaScript directly.
 
 ## Getting Started
 

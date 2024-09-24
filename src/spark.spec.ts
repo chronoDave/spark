@@ -28,6 +28,7 @@ test('[spark] renders children', t => {
   t.equal(createElement('span', {}, 30), '<span>30</span>', 'renders number child');
   t.equal(createElement('div', {}, true), '<div>true</div>', 'renders boolean true child');
   t.equal(createElement('div', {}, false), '<div>false</div>', 'renders boolean false child');
+  t.equal(createElement('div', {}, undefined), '<div></div>', 'does not render undefined child');
   t.equal(createElement('a', {}, () => 'link'), '<a>link</a>', 'renders function child');
   t.equal(createElement('p', {}, createElement('a', {}, 'link')), '<p><a>link</a></p>', 'renders nested child');
   t.equal(createElement('p', {}, [

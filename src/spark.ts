@@ -1,4 +1,6 @@
-import element, { Child } from './element';
+import type { Child } from './element';
+
+import element from './element';
 import { render } from './render';
 
 export type { JSX } from './jsx';

@@ -1,4 +1,4 @@
-export type Child = string | number | boolean | null | (() => Child) | Child[];
+export type Child = string | number | boolean | null | undefined | (() => Child) | Child[];
 
 export type Element = {
   type: string;
@@ -36,7 +36,8 @@ export default (tag: string, props: object | null, children?: Child[]): Element 
     const child = createChildElement(cur);
 
     if (Array.isArray(child)) {
-      // @ts-ignore: TS2589: Type instantiation is excessively deep and possibly infinite.
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore: TS2589, Type instantiation is excessively deep and possibly infinite. 
       acc.push(...(child.flat(Infinity).filter(x => x) as Array<Element | TextElement>));
     } else if (child) {
       acc.push(child);
