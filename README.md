@@ -88,3 +88,14 @@ const page = () => template({ title: 'Page' }, h('p', {}, 'Title') });
 
 page(); // <html lang="en"><body><h1>Page</h1><p>Title</p></body></html>
 ```
+
+### Outputs
+
+| Type | Example | Output |
+| - | - | - |
+| `string` | `h('span', {}, 'spark')` | `<span>spark</span>`
+| `number` | `h('span', {}, 3)` | `<span>3</span>`
+| `boolean` | `h('span', {}, true)` | `<span>true</span>`
+| `boolean` | `h('span', {}, false)` | `<span></span>`
+| `undefined` | `h('span', {}, undefined)` | `<span></span>`
+| `null` | `h('span', {}, null)` | `<span></span>`

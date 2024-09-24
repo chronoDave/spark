@@ -23,7 +23,7 @@ const createTextElement = (x: string | boolean | number | null): TextElement => 
 const createChildElement = (child: Child): ChildElement => {
   if (Array.isArray(child)) return child.map(createChildElement);
 
-  if (typeof child === 'undefined' || child === null) return null;
+  if (child === false || child === null || typeof child === 'undefined') return null;
   if (typeof child === 'function') return createChildElement(child());
   if (typeof child === 'object') return child;
   return createTextElement(child);

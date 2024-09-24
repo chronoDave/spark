@@ -26,18 +26,17 @@ test('[jsx] renders attributes', t => {
 test('[jsx] renders children', t => {
   t.equal(<h1>spark</h1>, '<h1>spark</h1>', 'renders string child');
   t.equal(<span>{30}</span>, '<span>30</span>', 'renders number child');
-  t.equal(<div>{true}</div>, '<div>true</div>', 'renders boolean true child');
-  t.equal(<div>{false}</div>, '<div>false</div>', 'renders boolean false child');
   t.equal(<a>{() => 'link'}</a>, '<a>link</a>', 'renders function child');
-  t.equal(<div>{undefined}</div>, '<div></div>', 'does not render undefined child');
+  t.equal(<div>{true}</div>, '<div>true</div>', 'renderr boolean true child');
   t.equal(<a>{[{}].map(() => <span></span>)}</a>, '<a><span></span></a>', 'renders mapped array child');
   t.equal(<p>{[<span class='icon'></span>, 'body']}</p>, '<p><span class="icon"></span>body</p>', 'renders array children');
   t.equal(<dl>{[{}, {}].map(() => [<dt></dt>, [<dd></dd>]])}</dl>, '<dl><dt></dt><dd></dd><dt></dt><dd></dd></dl>', 'renders recursive children');
   t.equal(<p><a>link</a></p>, '<p><a>link</a></p>', 'renders nested child');
   t.equal(<p>read <a>link</a></p>, '<p>read <a>link</a></p>', 'renders nested children');
   
-  t.equal(<div>{undefined}</div>, '<div></div>', 'does not render boolean undefined child');
-  t.equal(<div>{null}</div>, '<div></div>', 'does not render boolean null child');
+  t.equal(<div>{false}</div>, '<div></div>', 'does not render boolean false child');
+  t.equal(<div>{undefined}</div>, '<div></div>', 'does not render undefined child');
+  t.equal(<div>{null}</div>, '<div></div>', 'does not render null child');
 
   t.end();
 });
