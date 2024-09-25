@@ -16,14 +16,18 @@ const VOID_ELEMENTS = new Set([
   'wbr'
 ]);
 
+const escapeAttribute = (x: string) => x
+  .replace(/</g, '&gt;')
+  .replace(/>/g, '&lt;')
+  .replace(/&/g, '&amp;')
+  .replace(/'/g, '&#39;')
+  .replace(/"/g, '&quot;');
+
 const renderProps = (props: object): string => {
   const x = Object.entries(props)
     .reduce<string[]>((acc, [k, v]) => {
-      if (typeof v === 'function') {
-        acc.push(`${k}="${v()}"`);
-        return acc;
-      }
-
+      if (typeof v === 'function') v = v();
+      if (typeof v === 'string') v = escapeAttribute(v);
       if (typeof v !== 'undefined' && v !== null) acc.push(`${k}="${v}"`);
 
       return acc;

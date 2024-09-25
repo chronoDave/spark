@@ -16,6 +16,7 @@ test('[jsx] renders attributes', t => {
   t.equal(<span aria-hidden={false}></span>, '<span aria-hidden="false"></span>', 'renders boolean false attribute');
   t.equal(<img height={80} />, '<img height="80">', 'renders number attribute');
   t.equal(<div class={() => 'container'}></div>, '<div class="container"></div>', 'renders function attribute');
+  t.equal(<button aria-label='This is a "button"' />, '<button aria-label="This is a &quot;button&quot;"></button>', 'escapes HTML characters');
 
   t.equal(<img height={undefined} />, '<img>', 'does not render undefined attribute');
   t.equal(<img disabled={null} />, '<img>', 'does not render null attribute');

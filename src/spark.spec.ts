@@ -16,6 +16,7 @@ test('[spark] renders attributes', t => {
   t.equal(createElement('img', { height: 80 }), '<img height="80">', 'renders number attribute');
   t.equal(createElement('div', { class: () => 'container' }), '<div class="container"></div>', 'renders function attribute');
   t.equal(createElement('img', { width: 32, height: 32 }), '<img width="32" height="32">', 'render spaces between attributes');
+  t.equal(createElement('button', { 'aria-label': 'This is a "button"' }), '<button aria-label="This is a &quot;button&quot;"></button>', 'escapes HTML characters');
 
   t.equal(createElement('img', { height: null }), '<img>', 'does not render null attribute');
   t.equal(createElement('img', { height: undefined }), '<img>', 'does not render undefined attribute');
