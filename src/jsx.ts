@@ -339,7 +339,7 @@ export namespace JSX {
       type: string;
       nomodule: boolean;
       async: boolean;
-      defer: Partial<HTMLAttributes>;
+      defer: boolean;
       crossorigin: string;
       integrity: string;
       referrerpolicy: string;
