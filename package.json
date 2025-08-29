@@ -1,6 +1,6 @@
 {
   "name": "@chronocide/spark",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "description": "Simple JSX templating",
   "type": "module",
   "types": "dist/spark.d.ts",
