@@ -7,11 +7,9 @@
   <a href="/LICENSE">
     <img alt="License GPLv3" src="https://img.shields.io/badge/license-GPLv3-blue.svg" />
   </a>
+  <img alt="Bundle size" src="https://img.shields.io/bundlejs/size/%40chronocide%2Fspark">
   <a href="https://www.npmjs.com/package/@chronocide/spark">
     <img alt="NPM" src="https://img.shields.io/npm/v/@chronocide/spark?label=npm">
-  </a>
-  <a href="https://bundlephobia.com/result?p=@chronocide/spark@latest">
-    <img alt="Bundle size" src="https://img.shields.io/bundlephobia/minzip/@chronocide/spark@latest.svg">
   </a>
 </div>
 
