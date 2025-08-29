@@ -1,6 +1,6 @@
 <div align="center">
   <h1>@chronocide/spark</h1>
-  <p>Simple <b>JSX</b> templating library.</p>
+  <p>Simple <b>TSX</b> templating library.</p>
 </div>
 
 <div align="center">
@@ -15,21 +15,61 @@
   </a>
 </div>
 
-## Why?
+## Features
 
-`@chronocide/spark` is tiny and fullfills exactly one job, which is templating in JavaScript. Similar templating solutions exist such as [Handlebars](https://handlebarsjs.com/), [EJS](https://ejs.co/) or [Nunjucks](https://github.com/mozilla/nunjucks) but these solutions often provide a custom templating language instead of using JavaScript directly.
+ - No external dependencies
+ - Written in [TypeScript](https://en.wikipedia.org/wiki/TypeScript)
+ - Supports [JSX](https://en.wikipedia.org/wiki/JSX_(JavaScript)) (optional)
+ - [Declarative](https://en.wikipedia.org/wiki/Declarative_programming)
 
-## Getting Started
-
-### Installation
+## Installation
 
 ```sh
 npm i @chronocide/spark
 ```
 
-### Example
+## Example
 
-**tsconfig.json**
+```TS
+import h from '@chronocide/spark';
+
+console.log(h('h1')()('Hello world!')); // <h1>Hello world!</h1>
+```
+
+```TS
+import h from '@chronocide/spark';
+
+const arr = [1, 2, 3];
+const li = (i: number) => h('li')()(i);
+const ul = h('ul')()(arr.map(li)); // <ul><li>1</li><li>2</li><li>3</li></ul>
+```
+
+```TS
+import h from '@chronocide/spark';
+
+const page = (...children: unknown[]): string => {
+  const out = h('html')({ lang: 'en' })(
+    h('head')()(
+      h('title')()('My website')
+    ),
+    h('a')({ class: 'sr-only', href: '#main' })('Jump to main content.')
+    h('body')()(
+      h('main')({ id: 'main' })(children)
+    )
+  );
+
+  return `<!DOCTYPE html>${out}`;
+};
+
+const landing = page(
+  h('h1')()('Hello world!'),
+  h('p')()('This is my landing page')
+); // <!DOCTYPE html><html lang="en"><head><title>My website</title></head><a class="sr-only" href="#main">Jump to main content.</a><body><main id="main"><h1>Hello world!</h1><p>This is my landing page</p></main></body></html>
+```
+
+### TSX
+
+`tsconfig.json`
 
 ```JSON
 {
@@ -40,62 +80,46 @@ npm i @chronocide/spark
 }
 ```
 
-**index.tsx**
+`index.tsx`
 
 ```TSX
-import * as spark from '@chronocide/spark';
+import * as spark from '@chronocide/spark/jsx';
 
-type Props = {
-  title: string
-}
-
-const Template: spark.Component<Props> = props => (
-  <html lang="en">
-    <body>
-      <h1>{props.title}</h1>
-      {props.children}
-    </body>
-  </html>
-);
-
-const Page = () => (
-  <Template title="Page">
-    <p>Title</p>
-  </Template>
-);
-
-<Page /> // <html lang="en"><body><h1>Page</h1><p>Title</p></body></html>
-```
-
-**index.ts**
-
-```ts
-import { createElement as h } from '@chronocide/spark';
-
-type TemplateProps = {
-  title: string
-}
-
-const template = (props: TemplateProps, children: string[]) =>
-  h('html', { lang: 'en' },
-    h('body', {},
-      h('h1', {}, props.title),
-      ...children
-    )
+const Page = (...children: unknown[]): string => {
+  const out = (
+    <html lang="en">
+      <head>
+        <title>My website</title>
+      </head>
+      <a class="sr-only" href="#main">Jump to main content.</a>
+      <body>
+        <main id="main">{children}</main>
+      </body>
+    </html>
   );
 
-const page = () => template({ title: 'Page' }, h('p', {}, 'Title') });
+  return `<!DOCTYPE html>${out}`;
+};
 
-page(); // <html lang="en"><body><h1>Page</h1><p>Title</p></body></html>
+const Landing = (
+  <Page>
+    <h1>Hello world!</h1>
+    <p>This is my landing page</p>
+  </Page>
+); // <!DOCTYPE html><html lang="en"><head><title>My website</title></head><a class="sr-only" href="#main">Jump to main content.</a><body><main id="main"><h1>Hello world!</h1><p>This is my landing page</p></main></body></html>
 ```
 
-### Outputs
+## API
 
 | Type | Example | Output |
 | - | - | - |
-| `string` | `h('span', {}, 'spark')` | `<span>spark</span>`
-| `number` | `h('span', {}, 3)` | `<span>3</span>`
-| `boolean` | `h('span', {}, true)` | `<span>true</span>`
-| `boolean` | `h('span', {}, false)` | `<span></span>`
-| `undefined` | `h('span', {}, undefined)` | `<span></span>`
-| `null` | `h('span', {}, null)` | `<span></span>`
+| `string` | `h('span')({})('spark')` | `<span>spark</span>`
+| `number` | `h('span')({})(3)` | `<span>3</span>`
+| `boolean` | `h('span')({})(true)` | `<span>true</span>`
+| `boolean` | `h('span')({})(false)` | `<span></span>`
+| `undefined` | `h('span')({})(undefined)` | `<span></span>`
+| `null` | `h('span')({})(null)` | `<span></span>`
+
+## Why?
+
+Similar templating solutions exist — such as [Handlebars](https://handlebarsjs.com/), [EJS](https://ejs.co/) or [Nunjucks](https://github.com/mozilla/nunjucks) — but these solutions often provide a custom templating language instead of TypeScript. They're also (unnecessarily) large for creating static HTML.

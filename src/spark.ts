@@ -1,17 +1,28 @@
-import type { Child } from './element';
+import { maybe } from './lib/fn.ts';
+import type { Attributes } from './lib/render.ts';
 
-import element from './element';
-import { render } from './render';
+import * as render from './lib/render.ts';
 
-export type { JSX } from './jsx';
+const VOID_TAGS = new Set([
+  'area',
+  'base',
+  'br',
+  'col',
+  'embed',
+  'hr',
+  'img',
+  'input',
+  'link',
+  'meta',
+  'source',
+  'track',
+  'wbr'
+]);
 
-export type Component<T extends object = {}> = (props: T & { children?: Child }) => string;
-
-export const createElement = (
-  tag: string | Component,
-  props: object | null,
-  ...children: Child[]
-): string => {
-  if (typeof tag === 'function') return tag({ ...props, children });
-  return render(element(tag, props, children));
-};
+export default <T extends string>(tag: T) =>
+  <P extends Attributes>(attributes?: P) =>
+    (...children: unknown[]) => {
+      const open = `<${tag}${maybe(render.attributes)(attributes) ?? ''}>`;
+      if (VOID_TAGS.has(tag)) return open;
+      return `${open}${maybe(render.children)(children)}</${tag}>`;
+    };

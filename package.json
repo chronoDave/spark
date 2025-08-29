@@ -5,11 +5,8 @@
   "type": "module",
   "types": "dist/spark.d.ts",
   "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": "./dist/spark.js",
-      "require": "./dist/spark.cjs"
-    }
+    ".": "./dist/spark.js",
+    "./jsx": "./dist/spark-jsx.js"
   },
   "keywords": [
     "jsx",
@@ -30,19 +27,21 @@
   "scripts": {
     "lint": "eslint src",
     "build": "rollup -c",
-    "test": "node scripts/tape.js && tape build/**/*.spec.js",
-    "preversion": "npm run lint && npm run test && npm run build",
-    "postversion": "npm publish"
+    "test:js": "node --experimental-strip-types --no-warnings --test src/**/*.spec.ts",
+    "test:jsx": "node --experimental-strip-types --no-warnings scripts/build.ts && node --test build/**/*.spec.js",
+    "test": "npm run test:js && npm run test:jsx",
+    "preversion": "npm run lint && npm run test",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "devDependencies": {
     "@chronocide/eslint-config": "github:chronoDave/eslint-config",
-    "@types/tape": "^5.6.1",
-    "esbuild": "^0.19.3",
+    "@types/node": "^24.0.3",
+    "esbuild": "^0.25.5",
     "eslint": "^9.9.1",
     "rollup": "^3.29.2",
     "rollup-plugin-dts": "^6.0.2",
     "rollup-plugin-esbuild": "^5.0.0",
-    "tape": "^5.6.6",
     "typescript": "^5.2.2"
   }
 }
