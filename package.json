@@ -31,7 +31,7 @@
     "test:jsx": "node --experimental-strip-types --no-warnings scripts/build.ts && node --test build/**/*.spec.js",
     "test": "npm run test:js && npm run test:jsx",
     "preversion": "npm run lint && npm run test",
-    "version": "npm run build && git add -A dist",
+    "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
   },
   "devDependencies": {
