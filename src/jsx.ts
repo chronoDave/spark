@@ -1,4 +1,5 @@
 import type { Attributes } from './lib/render.ts';
+import type { HTMLVoidElementTagName } from './spark.ts';
 
 import h from './spark.ts';
 
@@ -807,10 +808,10 @@ export namespace JSX {
 }
 
 export const createElement = <
-  T extends string,
-  P extends Attributes
+  T extends string = keyof HTMLElementTagNameMap,
+  P extends Attributes = {}
 >(
   tag: T,
   attributes?: P,
-  ...children: unknown[]
+  ...children: T extends HTMLVoidElementTagName ? never[] : unknown[]
 ) => h(tag)(attributes)(...children);
