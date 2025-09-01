@@ -16,6 +16,7 @@
 ## Features
 
  - No external dependencies
+ - Tiny size
  - Written in [TypeScript](https://en.wikipedia.org/wiki/TypeScript)
  - Supports [JSX](https://en.wikipedia.org/wiki/JSX_(JavaScript)) (optional)
  - [Declarative](https://en.wikipedia.org/wiki/Declarative_programming)
