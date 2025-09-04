@@ -1,6 +1,6 @@
 <div align="center">
   <h1>@chronocide/spark</h1>
-  <p>Simple <b>TSX</b> templating library.</p>
+  <p>Simple TypeScript templating library.</p>
 </div>
 
 <div align="center">
@@ -18,7 +18,6 @@
  - No external dependencies
  - Tiny size
  - Written in [TypeScript](https://en.wikipedia.org/wiki/TypeScript)
- - Supports [JSX](https://en.wikipedia.org/wiki/JSX_(JavaScript)) (optional)
  - [Declarative](https://en.wikipedia.org/wiki/Declarative_programming)
 
 ## Installation
@@ -67,48 +66,6 @@ const landing = page(
   h('h1')()('Hello world!'),
   h('p')()('This is my landing page')
 ); // <!DOCTYPE html><html lang="en"><head><title>My website</title></head><a class="sr-only" href="#main">Jump to main content.</a><body><main id="main"><h1>Hello world!</h1><p>This is my landing page</p></main><svg><path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"/></svg></body></html>
-```
-
-### TSX
-
-`tsconfig.json`
-
-```JSON
-{
-  ...
-  "jsx": "react",
-  "jsxFactory": "spark.createElement"
-  ...
-}
-```
-
-`index.tsx`
-
-```TSX
-import * as spark from '@chronocide/spark/jsx';
-
-const Page = (...children: unknown[]): string => {
-  const out = (
-    <html lang="en">
-      <head>
-        <title>My website</title>
-      </head>
-      <a class="sr-only" href="#main">Jump to main content.</a>
-      <body>
-        <main id="main">{children}</main>
-      </body>
-    </html>
-  );
-
-  return `<!DOCTYPE html>${out}`;
-};
-
-const Landing = (
-  <Page>
-    <h1>Hello world!</h1>
-    <p>This is my landing page</p>
-  </Page>
-); // <!DOCTYPE html><html lang="en"><head><title>My website</title></head><a class="sr-only" href="#main">Jump to main content.</a><body><main id="main"><h1>Hello world!</h1><p>This is my landing page</p></main></body></html>
 ```
 
 ## API

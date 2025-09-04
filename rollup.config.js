@@ -12,24 +12,10 @@ export default [{
     format: 'es'
   }]
 }, {
-  input: 'src/jsx.ts',
-  plugins: [esbuild({ target: 'esnext' })],
-  output: {
-    file: 'dist/spark-jsx.js',
-    format: 'es'
-  }
-}, {
   input: 'src/spark.ts',
   plugins: [dts()],
   output: {
     file: 'dist/spark.d.ts',
-    format: 'es'
-  }
-}, {
-  input: 'src/jsx.ts',
-  plugins: [dts()],
-  output: {
-    file: 'dist/spark-jsx.d.ts',
     format: 'es'
   }
 }];

@@ -5,12 +5,12 @@
   "type": "module",
   "types": "dist/spark.d.ts",
   "exports": {
-    ".": "./dist/spark.js",
-    "./jsx": "./dist/spark-jsx.js"
+    ".": "./dist/spark.js"
   },
   "keywords": [
-    "jsx",
-    "template"
+    "html",
+    "template",
+    "static"
   ],
   "files": [
     "dist/**/*"
@@ -27,9 +27,7 @@
   "scripts": {
     "lint": "eslint src",
     "build": "rollup -c",
-    "test:js": "node --experimental-strip-types --no-warnings --test src/**/*.spec.ts",
-    "test:jsx": "node --experimental-strip-types --no-warnings scripts/build.ts && node --test build/**/*.spec.js",
-    "test": "npm run test:js && npm run test:jsx",
+    "test": "node --experimental-strip-types --no-warnings --test src/**/*.spec.ts",
     "preversion": "npm run lint && npm run test",
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
