@@ -37,5 +37,14 @@ export default <T extends string = keyof HTMLElementTagNameMap>(tag: T) =>
         'track',
         'wbr'
       ].includes(tag)) return open;
-      return `${open}${maybe(render.children)(children)}</${tag}>`;
+      return `${open}${render.children(children)}</${tag}>`;
+    };
+
+export const xml = <T extends string>(tag: T) =>
+  <P extends Attributes>(attributes?: P) =>
+    (...children: unknown[]) => {
+      const body = render.children(children);
+
+      if (body === '') return `<${tag}${maybe(render.attributes)(attributes) ?? ''}/>`;
+      return `<${tag}${maybe(render.attributes)(attributes) ?? ''}>${body}</${tag}>`;
     };

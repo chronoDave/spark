@@ -44,7 +44,7 @@ const ul = h('ul')()(arr.map(li)); // <ul><li>1</li><li>2</li><li>3</li></ul>
 ```
 
 ```TS
-import h from '@chronocide/spark';
+import h, { xml } from '@chronocide/spark';
 
 const page = (...children: unknown[]): string => {
   const out = h('html')({ lang: 'en' })(
@@ -53,7 +53,10 @@ const page = (...children: unknown[]): string => {
     ),
     h('a')({ class: 'sr-only', href: '#main' })('Jump to main content.')
     h('body')()(
-      h('main')({ id: 'main' })(children)
+      h('main')({ id: 'main' })(children),
+      xml('svg')()(
+        xml('path')({ d: 'M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z' })()
+      )
     )
   );
 
@@ -63,7 +66,7 @@ const page = (...children: unknown[]): string => {
 const landing = page(
   h('h1')()('Hello world!'),
   h('p')()('This is my landing page')
-); // <!DOCTYPE html><html lang="en"><head><title>My website</title></head><a class="sr-only" href="#main">Jump to main content.</a><body><main id="main"><h1>Hello world!</h1><p>This is my landing page</p></main></body></html>
+); // <!DOCTYPE html><html lang="en"><head><title>My website</title></head><a class="sr-only" href="#main">Jump to main content.</a><body><main id="main"><h1>Hello world!</h1><p>This is my landing page</p></main><svg><path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"/></svg></body></html>
 ```
 
 ### TSX
