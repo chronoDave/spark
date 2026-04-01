@@ -32,11 +32,13 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
   },
+  "optionalDependencies": {
+    "eslint": "^9.9.1",
+    "@chronocide/eslint-config": "^0.7.11"
+  },
   "devDependencies": {
-    "@chronocide/eslint-config": "github:chronoDave/eslint-config",
     "@types/node": "^24.0.3",
     "esbuild": "^0.25.5",
-    "eslint": "^9.9.1",
     "rollup": "^3.29.2",
     "rollup-plugin-dts": "^6.0.2",
     "rollup-plugin-esbuild": "^5.0.0",
