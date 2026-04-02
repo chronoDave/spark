@@ -1,6 +1,6 @@
-import { maybe } from './lib/fn.ts';
 import type { Attributes } from './lib/render.ts';
 
+import { maybe } from './lib/fn.ts';
 import * as render from './lib/render.ts';
 
 export type HTMLVoidElementTagName =
