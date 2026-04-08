@@ -1,6 +1,6 @@
 {
   "name": "@chronocide/spark",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Simple TypeScript templating library",
   "type": "module",
   "types": "dist/spark.d.ts",
