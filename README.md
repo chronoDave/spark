@@ -7,18 +7,13 @@
   <a href="/LICENSE">
     <img alt="License GPLv3" src="https://img.shields.io/badge/license-GPLv3-blue.svg" />
   </a>
-  <img alt="Bundle size" src="https://img.shields.io/bundlejs/size/%40chronocide%2Fspark">
+  <a href="https://bundlephobia.com/result?p=@chronocide/spark@latest">
+    <img alt="Bundle size" src="https://img.shields.io/bundlephobia/minzip/@chronocide/spark@latest.svg">
+  </a>
   <a href="https://www.npmjs.com/package/@chronocide/spark">
     <img alt="NPM" src="https://img.shields.io/npm/v/@chronocide/spark?label=npm">
   </a>
 </div>
-
-## Features
-
- - No external dependencies
- - Tiny size
- - Written in [TypeScript](https://en.wikipedia.org/wiki/TypeScript)
- - [Declarative](https://en.wikipedia.org/wiki/Declarative_programming)
 
 ## Installation
 
@@ -31,7 +26,7 @@ npm i @chronocide/spark
 ```TS
 import h from '@chronocide/spark';
 
-console.log(h('h1')()('Hello world!')); // <h1>Hello world!</h1>
+h('h1')()('Hello world!'); // <h1>Hello world!</h1>
 ```
 
 ```TS
@@ -70,15 +65,28 @@ const landing = page(
 
 ## API
 
+### Attributes
+
+| Type | Example | Output |
+| - | - | - |
+| `string` | `h('span')({ class: 'sr-only' })()` | `<span class="sr-only"></span>`
+| `number` | `h('span')({ 'data-rows': 3 })()` | `<span data-rows="3"></span>`
+| `boolean (true)` | `h('span')({ 'aria-hidden': true })()` | `<span aria-hidden></span>`
+| `boolean (false)` | `h('span')({ 'aria-hidden': false })()` | `<span></span>`
+| `undefined` | `h('span')({ editable: undefined })()` | `<span></span>`
+| `null` | `h('span')({ style: null })()` | `<span></span>`
+
+### Children
+
 | Type | Example | Output |
 | - | - | - |
 | `string` | `h('span')({})('spark')` | `<span>spark</span>`
 | `number` | `h('span')({})(3)` | `<span>3</span>`
-| `boolean` | `h('span')({})(true)` | `<span>true</span>`
-| `boolean` | `h('span')({})(false)` | `<span></span>`
+| `boolean (true)` | `h('span')({})(true)` | `<span></span>`
+| `boolean (false)` | `h('span')({})(false)` | `<span></span>`
 | `undefined` | `h('span')({})(undefined)` | `<span></span>`
 | `null` | `h('span')({})(null)` | `<span></span>`
 
 ## Why?
 
-Similar templating solutions exist — such as [Handlebars](https://handlebarsjs.com/), [EJS](https://ejs.co/) or [Nunjucks](https://github.com/mozilla/nunjucks) — but these solutions often provide a custom templating language instead of TypeScript. They're also (unnecessarily) large for creating static HTML.
+Similar templating solutions exist — such as [Handlebars](https://handlebarsjs.com/), [EJS](https://ejs.co/) or [Nunjucks](https://github.com/mozilla/nunjucks) — but these solutions often provide a custom templating language instead of TypeScript.

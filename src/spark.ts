@@ -1,5 +1,3 @@
-import type { Attributes } from './lib/render.ts';
-
 import { maybe } from './lib/fn.ts';
 import * as render from './lib/render.ts';
 
@@ -19,7 +17,7 @@ export type HTMLVoidElementTagName =
   'wbr';
 
 export default <T extends string = keyof HTMLElementTagNameMap>(tag: T) =>
-  <P extends Attributes>(attributes?: P) =>
+  (attributes?: Record<string, unknown>) =>
     (...children: T extends HTMLVoidElementTagName ? never[] : unknown[]) => {
       const open = `<${tag}${maybe(render.attributes)(attributes) ?? ''}>`;
       if ([
@@ -40,8 +38,8 @@ export default <T extends string = keyof HTMLElementTagNameMap>(tag: T) =>
       return `${open}${render.children(children)}</${tag}>`;
     };
 
-export const xml = <T extends string>(tag: T) =>
-  <P extends Attributes>(attributes?: P) =>
+export const xml = (tag: string) =>
+  (attributes?: Record<string, unknown>) =>
     (...children: unknown[]) => {
       const body = render.children(children);
 

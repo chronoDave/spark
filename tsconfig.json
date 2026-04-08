@@ -17,6 +17,7 @@
   "include": [
     "src",
     "test",
+    "scripts",
     ".eslintrc.js",
     "rollup.config.js"
   ]
