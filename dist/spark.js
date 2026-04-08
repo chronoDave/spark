@@ -8,13 +8,14 @@ var maybe = (fn) => (x) => {
 var escape = (x) => x.replace(/</g, "&gt;").replace(/>/g, "&lt;").replace(/&/g, "&amp;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
 var attributes = (attributes2) => Object.entries(attributes2).reduce((acc, [k, v]) => {
   if (typeof v === "string") acc += ` ${k}="${escape(v)}"`;
-  if (typeof v === "number" || typeof v === "boolean") acc += ` ${k}="${v}"`;
+  if (typeof v === "number") acc += ` ${k}="${v}"`;
+  if (v === true) acc += ` ${k}`;
   return acc;
 }, "");
 var children = (...x) => x.reduce((acc, cur) => {
   if (Array.isArray(cur)) acc += children(...cur);
   if (typeof cur === "string") acc += cur;
-  if (typeof cur === "number" || cur === true) acc += `${cur}`;
+  if (typeof cur === "number") acc += `${cur}`;
   return acc;
 }, "");
 

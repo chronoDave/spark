@@ -30,7 +30,7 @@
     "test": "node --test src/**/*.spec.ts",
     "preversion": "npm run lint && npm run test",
     "version": "npm run build",
-    "postversion": "git push && git push --tags && npm publish"
+    "postversion": "git push && git push --tags"
   },
   "optionalDependencies": {
     "@chronocide/eslint-config": "0.8.1"
